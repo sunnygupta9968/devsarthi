@@ -329,9 +329,7 @@ function LoginContent() {
       {/* Footer */}
       <footer className="relative z-10 border-t border-border/60 px-5 py-5 sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 text-xs text-muted-foreground sm:flex-row">
-          <p>
-            © {new Date().getFullYear()} DevSarthi. All rights reserved.
-          </p>
+          <p>© 2026 DevSarthi</p>
           <p className="flex items-center gap-1.5">
             Made for the people who build the future.
           </p>

@@ -442,7 +442,7 @@ export default function Home() {
 
           <p>Built for developers who love to build.</p>
 
-          <p>© {new Date().getFullYear()} DevSarthi</p>
+         <p>© 2026 DevSarthi</p>
         </div>
       </footer>
     </main>

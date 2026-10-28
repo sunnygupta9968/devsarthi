@@ -65,9 +65,7 @@ app:
   token-encryptor-password: ${TOKEN_ENCRYPTOR_PASSWORD}
   token-encryptor-salt: ${TOKEN_ENCRYPTOR_SALT}
   embedding:
-    huggingface:
-      token: ${HF_TOKEN}
-      endpoint: https://router.huggingface.co/hf-inference/models/thenlper/gte-large/pipeline/feature-extraction
+      provider: jina
 
   indexing:
     max-file-bytes: 102400

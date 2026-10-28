@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/devsarthi}
+    username: ${DB_USERNAME}
+    password: ${DB_password}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  ai:
+    model:
+      chat: openai          # selects which starter provides ChatModel
+      embedding: ollama     # and which provides EmbeddingModel
+    openai:
+      api-key: ${GROQ_API_KEY:YOU_GROQ_API_KEY}
+      base-url: https://api.groq.com/openai/v1
+      chat:
+        options:
+          model: openai/gpt-oss-120b
+          temperature: 0.2
+    ollama:
+      base-url: http://localhost:11434
+      init:
+        pull-model-strategy: when_missing
+      embedding:
+        options:
+          model: qwen3-embedding:0.6b
+    vectorstore:
+      pgvector:
+        initialize-schema: true
+        dimensions: 1024      # default is 1536, which is what OpenAI used
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: ${GITHUB_CLIENT_ID:YOUR_GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET:YOUR_GITHUB_CLIENT_SECRET}
+            scope: read:user,repo
+        provider:
+          github:
+            user-name-attribute: id
+
+server:
+  servlet:
+    session:
+      cookie:
+        name: DEVSARTHI_SESSION
+        http-only: true
+        same-site: lax
+      timeout: 7d
+#App settings
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:3000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGIN:http://localhost:3000}
+  token-encryptor-password: ${TOKEN_ENCRYPTOR_PASSWORD:local-secret-key}
+  token-encryptor-salt: ${TOKEN_ENCRYPTOR_SALT:ADD_YOUR_TOKEN_ENCRYPTOR_SALT}
+  indexing:
+    max-file-bytes: 102400
+    chunk-size: 800
+    chunk-overlap: 100
+  github:
+    api-delay-ms: 50
+

@@ -54,7 +54,8 @@ server:
       cookie:
         name: DEVSARTHI_SESSION
         http-only: true
-        same-site: lax
+        secure: true
+        same-site: none
       timeout: 7d
 #App settings
 app:

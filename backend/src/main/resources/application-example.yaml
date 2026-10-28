@@ -17,7 +17,7 @@ spring:
   ai:
     model:
       chat: openai          # selects which starter provides ChatModel
-      embedding: ollama     # and which provides EmbeddingModel
+      embedding: none     # and which provides EmbeddingModel
     openai:
       api-key: ${GROQ_API_KEY}
       base-url: https://api.groq.com/openai/v1
@@ -25,19 +25,14 @@ spring:
         options:
           model: openai/gpt-oss-120b
           temperature: 0.2
-    ollama:
-      base-url: http://localhost:11434
-      init:
-        pull-model-strategy: when_missing
-      embedding:
-        options:
-          model: qwen3-embedding:0.6b
+
     vectorstore:
       pgvector:
         initialize-schema: true
         dimensions: 1024      # default is 1536, which is what OpenAI used
         index-type: HNSW
         distance-type: COSINE_DISTANCE
+        table-name: vector_store_hf
 
 
 
@@ -68,10 +63,15 @@ app:
     allowed-origins: ${CORS_ALLOWED_ORIGIN}
   token-encryptor-password: ${TOKEN_ENCRYPTOR_PASSWORD}
   token-encryptor-salt: ${TOKEN_ENCRYPTOR_SALT}
+  embedding:
+    huggingface:
+      token: ${HF_TOKEN}
+      endpoint: https://router.huggingface.co/hf-inference/models/thenlper/gte-large/pipeline/feature-extraction
+
   indexing:
     max-file-bytes: 102400
-    chunk-size: 800
-    chunk-overlap: 100
+    chunk-size: 400
+    chunk-overlap: 50
   github:
     api-delay-ms: 50
 

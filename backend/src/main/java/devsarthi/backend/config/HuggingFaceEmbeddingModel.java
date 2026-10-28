@@ -35,6 +35,8 @@ public class HuggingFaceEmbeddingModel implements EmbeddingModel {
                 .baseUrl(ENDPOINT)
                 .defaultHeader("Authorization", "Bearer " + token)
                 .build();
+        System.out.println(
+                "Embedding provider endpoint configured: " + ENDPOINT);
     }
 
     @Override

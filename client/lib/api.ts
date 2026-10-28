@@ -70,9 +70,8 @@ export class ApiError extends Error {
 }
 
 export function getApiBaseUrl() {
-  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+  return process.env.NEXT_PUBLIC_API_BASE_URL || "https://devsarthi-backend.onrender.com";
 }
-
 export function getGithubLoginUrl() {
   return `${getApiBaseUrl()}/oauth2/authorization/github`;
 }

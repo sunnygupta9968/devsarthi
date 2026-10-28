@@ -2,9 +2,9 @@ spring:
   application:
     name: backend
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5433/devsarthi}
+    url: ${DB_URL}
     username: ${DB_USERNAME}
-    password: ${DB_password}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -19,7 +19,7 @@ spring:
       chat: openai          # selects which starter provides ChatModel
       embedding: ollama     # and which provides EmbeddingModel
     openai:
-      api-key: ${GROQ_API_KEY:YOU_GROQ_API_KEY}
+      api-key: ${GROQ_API_KEY}
       base-url: https://api.groq.com/openai/v1
       chat:
         options:
@@ -46,8 +46,8 @@ spring:
       client:
         registration:
           github:
-            client-id: ${GITHUB_CLIENT_ID:YOUR_GITHUB_CLIENT_ID}
-            client-secret: ${GITHUB_CLIENT_SECRET:YOUR_GITHUB_CLIENT_SECRET}
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
             scope: read:user,repo
         provider:
           github:
@@ -63,11 +63,11 @@ server:
       timeout: 7d
 #App settings
 app:
-  frontend-url: ${FRONTEND_URL:http://localhost:3000}
+  frontend-url: ${FRONTEND_URL}
   cors:
-    allowed-origins: ${CORS_ALLOWED_ORIGIN:http://localhost:3000}
-  token-encryptor-password: ${TOKEN_ENCRYPTOR_PASSWORD:local-secret-key}
-  token-encryptor-salt: ${TOKEN_ENCRYPTOR_SALT:ADD_YOUR_TOKEN_ENCRYPTOR_SALT}
+    allowed-origins: ${CORS_ALLOWED_ORIGIN}
+  token-encryptor-password: ${TOKEN_ENCRYPTOR_PASSWORD}
+  token-encryptor-salt: ${TOKEN_ENCRYPTOR_SALT}
   indexing:
     max-file-bytes: 102400
     chunk-size: 800
